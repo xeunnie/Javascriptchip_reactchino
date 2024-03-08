@@ -2,6 +2,8 @@ import React, { useEffect, useState  } from "react"
 import { useParams, useNavigate} from "react-router-dom"
 import { styled } from "styled-components"
 import { Nav } from "react-bootstrap"
+import { addItem } from "../store";
+import { useDispatch } from "react-redux";
 
 let YellowBtn = styled.button`
     background : ${props => props.bg};
@@ -15,6 +17,8 @@ function Detail(props){
     let [alert, setAlert] = useState(true)
     let [tabs, setTabs] = useState(0)
     let [fade2, setFade2] = useState('')
+
+    let dispatch = useDispatch()
 
     useEffect(()=> {
         setTimeout(()=> {setFade2('end')},200)
@@ -53,7 +57,9 @@ function Detail(props){
                     <h5>{props.shoes[id].title}</h5>
                     <p>{props.shoes[id].content}</p>
                     <p>{props.shoes[id].price}won</p>
-                    <button className='btn btn-danger'>order</button>
+                    <button className='btn btn-danger' onClick={()=>{
+                        dispatch(addItem({ id : props.shoes[id].id, name : props.shoes[id].title, count : props.shoes[id].count }))
+                    }}>order</button>
                 </div>
             </div>
             <button onClick={()=> {navigate('/detail/0')}}> 0 </button>

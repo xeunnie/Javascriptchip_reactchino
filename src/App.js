@@ -3,7 +3,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useState } from 'react';
 import shoeData from './data.js';
 import{Routes, Route, useNavigate, Outlet} from 'react-router-dom'
-import Detail from './pages/detail.js'
+import Detail from './pages/detail.jsx'
 import Cart from "./pages/cart";
 import axios from 'axios';
 
@@ -21,6 +21,7 @@ function App() {
             <Nav.Link onClick={()=> {navigate(-1)}}>Rollback</Nav.Link>
             <Nav.Link onClick={()=> {navigate('/detail')}}>Detail</Nav.Link>
             <Nav.Link onClick={()=> {navigate('/about')}}>About</Nav.Link>
+            <Nav.Link onClick={()=> {navigate('/cart')}}>Cart</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
