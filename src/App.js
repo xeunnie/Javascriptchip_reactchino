@@ -4,6 +4,7 @@ import { useState } from 'react';
 import shoeData from './data.js';
 import{Routes, Route, useNavigate, Outlet} from 'react-router-dom'
 import Detail from './pages/detail.js'
+import Cart from "./pages/cart";
 import axios from 'axios';
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
           </div>
         }/>
         <Route path="/detail/:id" element={<Detail shoes={shoes}/>}/>
+        <Route path="/cart" element={<Cart/>}/>
         <Route path= "/about" element={<About/>}>
           <Route path= "member" element={<div>members</div>}/>
           <Route path= "location" element={<div>location</div>}/>
