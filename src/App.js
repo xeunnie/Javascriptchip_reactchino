@@ -8,7 +8,11 @@ import Cart from "./pages/cart";
 import axios from 'axios';
 
 function App() {
+
+  let
+
   let [shoes,setShoes] = useState(shoeData)
+  let [stock] = useState([10,11,12])
   let navigate =useNavigate()
 
   return (
