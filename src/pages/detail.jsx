@@ -20,6 +20,23 @@ function Detail(props){
 
     let dispatch = useDispatch()
 
+    let foundProduct = props.shoes.find(x => x.id === id)
+    useEffect(() => {
+        // 로컬스토리지에 내용 추가하기(수정 문법 사용, get 으로 꺼내서 set 으로 넣기) -> 꺼내기
+        let foundItem = localStorage.getItem('watched')
+        // 꺼낸 JSON 자료를 어레이로 가지고 온 것을 변수에 똑같이 저장하기
+        foundItem = JSON.parse(foundItem)
+        // 어레이에다가 찾은 내용 추가하기
+        foundItem.push(foundProduct.id)
+        //이미 꺼냈던 내용이 있으면 추가하지 말라고 코드짜기 -> if 문 써도 됨
+        //근데 Set 자료형을 쓰면 중복 제거가 쉬움(중복을 알아서 다 제거해줌)
+        foundItem = new  Set(foundItem)
+        // 다시 어레이형으로 넣어줌
+        foundItem = Array.from(foundItem)
+        // 꺼낸 내용을 JSON 으로 다시 만들어서 로컬스토리지에다가 저장하기
+        localStorage.setItem('watched', JSON.stringify(foundItem))
+    },[])
+
     useEffect(()=> {
         setTimeout(()=> {setFade2('end')},200)
         return () => {

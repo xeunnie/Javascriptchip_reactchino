@@ -1,6 +1,6 @@
 import './App.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import shoeData from './data.js';
 import{Routes, Route, useNavigate, Outlet} from 'react-router-dom'
 import Detail from './pages/detail.jsx'
@@ -9,7 +9,10 @@ import axios from 'axios';
 
 function App() {
 
-  let
+  useEffect(()=>{
+    localStorage.setItem('watched', JSON.stringify([]))
+  }, [])
+  // Jotai, reduct persisit, zustand
 
   let [shoes,setShoes] = useState(shoeData)
   let [stock] = useState([10,11,12])
