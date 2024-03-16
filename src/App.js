@@ -6,6 +6,7 @@ import{Routes, Route, useNavigate, Outlet} from 'react-router-dom'
 import Detail from './pages/detail.jsx'
 import Cart from "./pages/cart";
 import axios from 'axios';
+import {useQuery} from 'react-query'
 
 function App() {
 
@@ -17,6 +18,13 @@ function App() {
   let [shoes,setShoes] = useState(shoeData)
   let [stock] = useState([10,11,12])
   let navigate =useNavigate()
+
+  let result = useQuery('', ()=>
+     axios.get('https://codingapple1.github.io/userdata.json').then((a)=>{
+      return a.data
+    })
+  )
+  //
 
   return (
     <div className="App">
@@ -30,6 +38,7 @@ function App() {
             <Nav.Link onClick={()=> {navigate('/about')}}>About</Nav.Link>
             <Nav.Link onClick={()=> {navigate('/cart')}}>Cart</Nav.Link>
           </Nav>
+          <Nav className='ms-auto'>Hello Chloe</Nav>
         </Container>
       </Navbar>
 
