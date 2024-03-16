@@ -22,7 +22,8 @@ function App() {
   let result = useQuery('', ()=>
      axios.get('https://codingapple1.github.io/userdata.json').then((a)=>{
       return a.data
-    })
+    }),
+    {staleTime : 2000} // 타이머 기능
   )
   //
 
@@ -38,7 +39,12 @@ function App() {
             <Nav.Link onClick={()=> {navigate('/about')}}>About</Nav.Link>
             <Nav.Link onClick={()=> {navigate('/cart')}}>Cart</Nav.Link>
           </Nav>
-          <Nav className='ms-auto'>Hello Chloe</Nav>
+          <Nav className='ms-auto'>
+            {/* { result.isLoading ? 'Loading' : result.data.name } */}
+            { result.isLoading && 'Loading' }
+            { result.error && 'error' }
+            { result.data && result.data.name }
+          </Nav>
         </Container>
       </Navbar>
 
